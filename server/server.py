@@ -30,10 +30,13 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
+def query_db(query):
+
+
 @app.route('/leaderboard', methods=['GET', 'POST'])
 def update_leaderboard():
     if not hasattr(g, 'sqlite_db'):
         abort(500)
     if request.method == 'POST':
     if request.method == 'GET':
-        return 'You got the leaderboard yay!'
+        return render_template('leaderboard.html', entries=query_db("select * from scores order by score desc"))
