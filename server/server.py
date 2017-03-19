@@ -30,12 +30,10 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
-#main game
-@app.route('/')
-def game():
-    return "Hello, world!"
-
-#game over/leaderboard page
-@app.route('/gameover')
-def gameover():
-    return "Game over, man, game over!"
+@app.route('/leaderboard', methods=['GET', 'POST'])
+def update_leaderboard():
+    if not hasattr(g, 'sqlite_db'):
+        abort(500)
+    if request.method == 'POST':
+    if request.method == 'GET':
+        return 'You got the leaderboard yay!'
