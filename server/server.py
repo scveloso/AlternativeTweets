@@ -41,18 +41,3 @@ def update_leaderboard():
     if request.method == 'GET':
         return 'You got the leaderboard yay!'
 
-
-
-def random_real_tweet():
-    random_year = random.randint(2009,2017)
-
-    # open the json file from that year
-    tweets_json = urllib2.urlopen("./resources/condensed_(%d).json" % random_year)
-    tweets = json.loads(tweets_json)
-
-    random_tweet_index = random.randint(0, len(tweets))
-
-    while tweets[random_tweet_index]["is_retweet"] == true:
-        random_tweet_index = (random_tweet_index + 1) % (len(tweets) - 1)
-
-    return tweets[random_tweet_index]["Text"]
